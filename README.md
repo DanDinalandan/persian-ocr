@@ -1,17 +1,93 @@
-# Persian isolated letter recognition
+# Persian isolated-letter recognition
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yt22-orb/persian-ocr/blob/main/Persian_Isolated_Letter_Recognizer.ipynb)
+A 32-class Persian character recognition project. The deployed model is a fine-tuned YOLO11n detector; a smaller PyTorch CNN was trained as a comparison. The [Colab notebook](https://colab.research.google.com/github/yt22-orb/persian-ocr/blob/main/Persian_Isolated_Letter_Recognizer.ipynb) runs the YOLO detector on images and exports predictions to CSV. The trained YOLO checkpoint and comparison CNN are attached to the [latest release](https://github.com/yt22-orb/persian-ocr/releases/latest).
 
-A YOLO11n detector for recognizing one isolated Persian letter. The Colab notebook can pull a dataset from a public GitHub repository or accept an uploaded ZIP, scan its images, and download a CSV of predictions.
+## What was built
 
-## Use a GitHub dataset
+The target is one complete, isolated Persian letter per image, including its dots. The detector has 32 classes, from alef through yeh. The project also includes a three-block CNN to compare detection against single-label classification, validation-only decision calibration, a Streamlit upload demo, synthetic stress evaluation, and reports for provenance and visual review.
 
-Upload images or a ZIP to the `dataset/` folder in a public repository. The notebook defaults to this repository, so you can upload your dataset to its `dataset/` folder and run the notebook. To use another public dataset repository, change `DATASET_REPO` in the notebook to `owner/repository`. Set `DATASET_SUBDIR` if the images are in a different folder. Organizing images into class-named folders records those folder names as reference labels in the output CSV.
+The experiment uses rendered typography, not natural handwriting. The results below describe this benchmark only; they are not estimates of real-world OCR accuracy.
 
-For a direct Colab upload, set `DATASET_SOURCE = "colab_upload"` and upload a ZIP of images.
+## Dataset creation and splitting
 
-## Model scope
+The model was trained on synthetic isolated-letter images rendered from licensed fonts. Pillow’s RAQM text shaping and complete glyph alpha bounds were used so detached dots and strokes were included in the boxes.
 
-The model was trained on synthetic isolated typography. On this small benchmark it reached 256/256 exact accuracy on a held-out synthetic-font test split and rejected 128/128 blank and two-letter negatives. These measurements do not establish performance on natural handwriting, camera images, connected text, or other real-world inputs. See [measured results](RESULTS.md) and [attribution](ATTRIBUTION.md).
+| Split | Font families | Positive images | Images per class |
+| --- | --- | ---: | ---: |
+| Train | Lateef, Markazi Text, Vazirmatn, Gulzar, Noto Naskh Arabic, Noto Sans Arabic | 1,536 | 48 |
+| Validation | Amiri | 256 | 8 |
+| Test | Scheherazade New | 256 | 8 |
 
-Download `yolo11n.pt` and `labels.json` from the [latest release](https://github.com/yt22-orb/persian-ocr/releases/latest) and place them in the same Google Drive folder as the notebook.
+Each split covers all 32 classes. The split is by font family: no font family is shared between train, validation, and test. This tests transfer to two unseen fonts, although one font in each held-out split makes the benchmark small.
+
+There are also 64 blank and 64 two-letter negative images in each of validation and test. These negatives are used to measure rejection behavior; they are not additional letter classes. The test set therefore has 256 positive examples plus 128 negatives.
+
+The source Persian OCR archives were inspected and mapped to the project’s Unicode labels, but their connected-text crops were excluded from training and evaluation. Contextual letter forms and dot completeness were not individually verified. Synthetic renders were used instead. Exact image hashes and parent/font identities were checked for split separation. The audit found no near-duplicate glyph candidates, but its coarse fingerprint check cannot prove that every possible near duplicate is absent.
+
+Generated manifests are frozen for the run. Any future real samples should include writer/session grouping metadata and be separated by those groups before training or evaluation.
+
+## Training
+
+Both models were trained on an AMD Radeon RX 7800 XT using ROCm 7.2 and PyTorch 2.11.0. The common run settings were seed 42, batch size 16, a maximum of 100 epochs, and early stopping patience 20. YOLO training completed 70 epochs; CNN training completed 86. No batch-size adjustment was made for hardware.
+
+### YOLO11n detector
+
+YOLO11n was initialized from Ultralytics’ pretrained `yolo11n.pt` weights and fine-tuned at 640-pixel input size. The run was deterministic and used full precision (`amp=false`). Horizontal/vertical flips, mosaic, mixup, and copy-paste were disabled. Mild geometric changes were enabled (rotation up to 3°, translation 0.01, scale 0.025, perspective 0.00005); value-channel brightness augmentation and training-only mild shadow, blur, and compression variation were also used. The best checkpoint was selected using the library’s validation detection fitness.
+
+### CNN comparison
+
+The comparison model has three convolution–ReLU–max-pooling blocks with 32, 64, and 128 channels, followed by global average pooling and a 32-logit output layer. It uses AdamW (learning rate 0.003, weight decay 0.0001) and cross-entropy loss.
+
+CNN preprocessing converts to grayscale, crops around all pixels darker than 180 with a four-pixel margin, pads to a white square, resizes to 64×64 with LANCZOS, and maps inverted grayscale to [-1, 1]. The crop comes from image pixels and does not use a ground-truth box. CNN training-only augmentation includes small rotations, mild brightness/shadow changes, blur, and JPEG compression.
+
+## Calibration and evaluation
+
+Decision thresholds were selected using validation data only, then frozen before test evaluation. For YOLO, the candidate confidence floor was 0.03, the acceptance threshold was 0.80, and class-agnostic NMS IoU was 0.40. YOLO rejects an image if no candidate is found, multiple candidates remain, or the single candidate is below the acceptance threshold. The CNN uses a confidence threshold of 0.80; because it emits one class, it cannot explicitly count letters.
+
+The calibration objective equally weighted valid-letter exact accuracy and negative rejection accuracy. On validation, YOLO achieved an objective of 0.9980 (99.61% valid accuracy and 100% negative rejection); the CNN objective was 0.8906 (92.19% valid accuracy and 85.94% negative rejection).
+
+### Held-out test results
+
+Rejected positive examples count as incorrect. Both models used the same 256 positive test identities.
+
+| Model | Correct positive predictions | Exact accuracy | Positive rejection rate |
+| --- | ---: | ---: | ---: |
+| YOLO11n | 256 / 256 | 100.00% | 0.00% |
+| Reduced CNN | 207 / 256 | 80.86% | 12.89% |
+
+Negative rejection was measured separately (64 images per category):
+
+| Model | Blank rejection | Two-letter rejection |
+| --- | ---: | ---: |
+| YOLO11n | 64 / 64 (100%) | 64 / 64 (100%) |
+| Reduced CNN | 64 / 64 (100%) | 42 / 64 (65.62%) |
+
+The two-letter negative set is deliberately small and synthetic. A second glyph the detector misses can still lead to a false acceptance.
+
+### Synthetic stress views
+
+A frozen stress set generated blurred and shadow-gradient versions of the held-out test images. These are synthetic transformations, not camera captures.
+
+| Model | Blur exact accuracy | Shadow exact accuracy |
+| --- | ---: | ---: |
+| YOLO11n | 100.00% | 100.00% |
+| Reduced CNN | 80.47% | 15.23% |
+
+The test font, validation font, and all scores are small synthetic samples. No camera photos, natural handwriting, connected words, or pages were evaluated. The results do not support claims for those inputs. Dark photographic backgrounds can also interfere with the CNN’s foreground crop.
+
+Detailed measurements, confusion matrices, per-class metrics, subgroup results, latency, and local verification reports are summarized in [RESULTS.md](RESULTS.md). Data and model source credits and license context are in [ATTRIBUTION.md](ATTRIBUTION.md).
+
+## Run inference in Colab
+
+1. Open the [Colab notebook](https://colab.research.google.com/github/yt22-orb/persian-ocr/blob/main/Persian_Isolated_Letter_Recognizer.ipynb).
+2. Download `yolo11n.pt` and `labels.json` from the [latest release](https://github.com/yt22-orb/persian-ocr/releases/latest) into the same Google Drive folder.
+3. Upload images or a ZIP into this repository’s [`dataset/` folder](https://github.com/yt22-orb/persian-ocr/tree/main/dataset). The notebook clones the public repository and scans that folder recursively. Or choose `colab_upload` in the notebook to upload a ZIP directly.
+4. Run the notebook to download a CSV containing each image’s prediction, confidence, and review status. Class-named subfolders are included as reference labels in the CSV; the notebook does not calculate accuracy automatically.
+
+The `dataset/` directory is an input location for user-provided inference images. It was not used to train or evaluate the released models. Do not commit private or sensitive images.
+
+## Reproducibility and package scope
+
+This repository is the inference package: it contains the notebook, labels, calibrated policies, model metadata, and results summary. The full training pipeline, prepared image manifests, and raw source archives remain in the development workspace and are not included here. Reported settings and metrics document the completed run; exact retraining requires those source files and the pinned environment recorded in that workspace.
+
+The release ZIP includes the notebook, inference code, both checkpoints, labels, policies, results, and attribution files. See [release v1.0.2](https://github.com/yt22-orb/persian-ocr/releases/tag/v1.0.2).

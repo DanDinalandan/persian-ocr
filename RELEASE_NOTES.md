@@ -1,5 +1,5 @@
-# v1.0.1
+# v1.0.2
 
-The Colab notebook now downloads a public GitHub dataset repository (or uses a ZIP uploaded directly in Colab), recursively predicts supported images, and downloads a CSV of results. Upload a dataset into this repository's `dataset/` folder or set `DATASET_REPO` to another public repository.
+Expand the project README with the model development record: synthetic dataset construction and font-family split, YOLO and CNN training settings, validation-only calibration, held-out metrics, synthetic stress results, and benchmark limitations.
 
-Assets: YOLO11n checkpoint, reduced CNN comparison checkpoint, label map, and complete inference package ZIP.
+Model weights and inference behavior are unchanged from v1.0.1. Assets: YOLO11n checkpoint, reduced CNN comparison checkpoint, label map, and complete inference package ZIP.
