@@ -1,0 +1,3 @@
+ultralytics==8.4.172
+numpy
+Pillow

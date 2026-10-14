@@ -1,0 +1,7 @@
+{
+  "threshold": 0.8,
+  "objective": 0.890625,
+  "accuracy": 0.921875,
+  "negative_rejection": 0.859375,
+  "checkpoint_sha256": "e1b709c576fafd5b14c5afc9e39efc172ed1cec31c0a9d5bb041d32ccc1078f8"
+}

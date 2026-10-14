@@ -1,0 +1,21 @@
+{
+  ".gitignore": "38d7a108a357f8c353e9c8c0d277fdce4b81a51f0f18b2732fbd11ec182e4101",
+  "ATTRIBUTION.md": "32e90e190f0ebc48f44a2c6b5ebc13e8d700c84645ed1add1650bce1e19b4e96",
+  "Persian_Isolated_Letter_Recognizer.ipynb": "00820b3a6f38d8a5cf83544b98c4833522b169785ac9c1acacddc9a47c88cd88",
+  "README.md": "06ae29e07fc5728e464567f06173e78888bea4fe354905104e5a3fe33cef838b",
+  "RELEASE_NOTES.md": "fda51b33dc17378796a16c2b77228d04bf83bbfe6ceffb8dd83dc6d2f178330d",
+  "RESULTS.md": "e6adc1ac40230eeb1430fefbd95ec13d96262a98bf94b9e02a0b06896305a137",
+  "artifacts/cnn-best.pt": "e1b709c576fafd5b14c5afc9e39efc172ed1cec31c0a9d5bb041d32ccc1078f8",
+  "artifacts/decision.json": "62feaf938fea854a16df14638d6e9200c1a49eb59c173abe8090230855bc66c2",
+  "artifacts/labels.json": "ba8483c682099bb42257ca8ab415b08c6f5cd4e0589d2cb201e133fcec38e0e1",
+  "artifacts/yolo11n.pt": "1b82317638d84627ee1ca455bad970ce70041d12194b0fb9c7762c1ba51540ab",
+  "artifacts/yolo_metadata.json": "1d5fae2c3f483f41d270a37ab7b6a2003352754901aa661f997afe7dc9e1ae2f",
+  "configs/cnn_decision.json": "f173251f71dae71e29675f40d23156cc166d00582b417fc7f967b780464a522e",
+  "configs/decision.json": "62feaf938fea854a16df14638d6e9200c1a49eb59c173abe8090230855bc66c2",
+  "configs/labels.json": "ba8483c682099bb42257ca8ab415b08c6f5cd4e0589d2cb201e133fcec38e0e1",
+  "persian_ocr/__init__.py": "c672a1653e1c85573364d311f95ceead2c75da407b78b22bec1f1e62ae74d9e9",
+  "persian_ocr/cnn.py": "357df845f007dcdb30487071f84013622871bbe11ee2c56b535287c99da8d92d",
+  "persian_ocr/common.py": "41c1eec0646b67246ac0cff1ce65f4d5e387d751de6387bde549d593606d111d",
+  "persian_ocr/inference.py": "02a018eb2b55ad93f1929a4429f67912da634ddbae40a5e06ad1df0c688a9dd2",
+  "requirements-colab.txt": "52b94ad796fe69e907f6b2f280a8f5ba02c1ddf96a23e05e070e509e188f9a07"
+}
