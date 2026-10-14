@@ -1,7 +1,5 @@
-# v1.0.0
+# v1.0.1
 
-Initial release of the Persian isolated letter recognition inference package.
+The Colab notebook now downloads a public GitHub dataset repository (or uses a ZIP uploaded directly in Colab), recursively predicts supported images, and downloads a CSV of results. Upload a dataset into this repository's `dataset/` folder or set `DATASET_REPO` to another public repository.
 
-Assets: `yolo11n.pt` (primary detector), `cnn-best.pt` (comparison model), and `persian-ocr-colab-v1.0.0.zip` (notebook, both model weights, labels, policy, results, and attribution).
-
-The detector reached 100% accuracy on 256 synthetic isolated-font test images. The benchmark is small and does not represent camera images or natural handwriting.
+Assets: YOLO11n checkpoint, reduced CNN comparison checkpoint, label map, and complete inference package ZIP.
