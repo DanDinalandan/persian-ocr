@@ -10,6 +10,8 @@ The experiment uses rendered typography, not natural handwriting. The results be
 
 ## Dataset creation and splitting
 
+The generated benchmark dataset used for these results is published in [`data/prepared/`](data/prepared/README.md) (about 168 MB). It includes the synthetic train/validation/test images, validation/test negatives, stress views, YOLO labels, and checksum-bearing manifests. It is separate from [`dataset/`](dataset/README.md), which remains the Colab notebook's image upload folder.
+
 The model was trained on synthetic isolated-letter images rendered from licensed fonts. Pillow’s RAQM text shaping and complete glyph alpha bounds were used so detached dots and strokes were included in the boxes.
 
 | Split | Font families | Positive images | Images per class |
@@ -90,6 +92,6 @@ The `dataset/` directory is an input location for user-provided inference images
 
 ## Reproducibility and package scope
 
-This repository is the inference package: it contains the notebook, labels, calibrated policies, model metadata, and results summary. The full training pipeline, prepared image manifests, and raw source archives remain in the development workspace and are not included here. Reported settings and metrics document the completed run; exact retraining requires those source files and the pinned environment recorded in that workspace.
+This repository is the inference package: it contains the notebook, labels, calibrated policies, model metadata, results summary, and the prepared benchmark under `data/prepared/`. The full training pipeline and raw source archives remain in the development workspace and are not included here. Reported settings and metrics document the completed run; exact retraining requires the training code and pinned environment recorded in that workspace.
 
 The release ZIP includes the notebook, inference code, both checkpoints, labels, policies, results, and attribution files. See [release v1.0.2](https://github.com/yt22-orb/persian-ocr/releases/tag/v1.0.2).

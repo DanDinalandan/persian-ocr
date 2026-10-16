@@ -1,0 +1,206 @@
+{
+  "revisions": {
+    "SaharKhoramipour/Persian-OCR-Dataset": "dd36ad9ca4e0ed1c45e90b85929cf3363b042eec",
+    "google/fonts": "9710da1eacb3be272583c3224dcb70f9da6eadbb"
+  },
+  "files": [
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/Arial.zip",
+      "path": "data/raw/persian-source/Arial.zip",
+      "sha256": "2bdfae945cc202a7dab185577e6937f952e896d6c3d8ad9e178164e9035a020f",
+      "bytes": 10705744
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/BKamran.zip",
+      "path": "data/raw/persian-source/BKamran.zip",
+      "sha256": "ae8c728da745619bc6b65d4994caa3e822daa335694b393fa2dec8c0aa64aa77",
+      "bytes": 8844320
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/BLotus.zip",
+      "path": "data/raw/persian-source/BLotus.zip",
+      "sha256": "5517846a40d8daf13d3370920b1fd20d1ccf4db39be6424fb287430cc6c6c7cd",
+      "bytes": 7559868
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/BMehr.zip",
+      "path": "data/raw/persian-source/BMehr.zip",
+      "sha256": "94886db90b4716b9e9e6dac9a933525e8c8ff074e4565211075b4863817aa0c9",
+      "bytes": 9730152
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/BMitra.zip",
+      "path": "data/raw/persian-source/BMitra.zip",
+      "sha256": "12dfa030cd7b07a48b1268160c68c2acd52ad9467a2db56c0017fe700dfe32fd",
+      "bytes": 7598731
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/BNazanin.zip",
+      "path": "data/raw/persian-source/BNazanin.zip",
+      "sha256": "61ed85f707641395b5c14d56dc8f43e67edf13edfc6c4ccd6050438f1759e5aa",
+      "bytes": 7781946
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/BTabassom.zip",
+      "path": "data/raw/persian-source/BTabassom.zip",
+      "sha256": "cf230b52e9eef2acda6dec18e830f38e5c30bd0fae837e73dfa060ad978fa650",
+      "bytes": 7509225
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/BTraffic.zip",
+      "path": "data/raw/persian-source/BTraffic.zip",
+      "sha256": "cd5b3e1c8bcdc9902b119f08d634a3869885ba305b60e9f1992a378eefa24393",
+      "bytes": 8616046
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/BYekan.zip",
+      "path": "data/raw/persian-source/BYekan.zip",
+      "sha256": "decd0b9c253e436ced7a67e45a6507ddb3a9c1b2e9d11908c4073103a50d18a6",
+      "bytes": 9209403
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/BZar.zip",
+      "path": "data/raw/persian-source/BZar.zip",
+      "sha256": "42b334a57a1a07fffd4619f88764888146fcb900fa08b8cb9df82a9ba2833a6d",
+      "bytes": 7766386
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/DastNevis.zip",
+      "path": "data/raw/persian-source/DastNevis.zip",
+      "sha256": "53bab893bad791dfeac2f347f818704be12a26f1b45eae1e4fbd07de2d0f9842",
+      "bytes": 9562841
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/INastaliq.zip",
+      "path": "data/raw/persian-source/INastaliq.zip",
+      "sha256": "8a1a0abeeeabed00b1752455669f0249b59737867b7c1c364ce540ef44bdce80",
+      "bytes": 8439183
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/LICENSE",
+      "path": "data/raw/persian-source/LICENSE",
+      "sha256": "0f7d12d504b31e56b87effff1517607f59c9904a819e451c90e036bd57909754",
+      "bytes": 898
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/Maneli.zip",
+      "path": "data/raw/persian-source/Maneli.zip",
+      "sha256": "ef3f8cb557bb44dff3f384efdefb493d9a07cd729612e026d07ca47589584eb6",
+      "bytes": 12984983
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/README.md",
+      "path": "data/raw/persian-source/README.md",
+      "sha256": "2ffda471c9fee926eeac792b21473f59bcac2b17c4ae27c877c793c1af77e6ba",
+      "bytes": 4736
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/Sayeh1.zip",
+      "path": "data/raw/persian-source/Sayeh1.zip",
+      "sha256": "f8fa7e535fe8ef3e98678fe211a0691c0db1043a70a67b6257d7fc73684f6be2",
+      "bytes": 7237511
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SaharKhoramipour/Persian-OCR-Dataset/dd36ad9ca4e0ed1c45e90b85929cf3363b042eec/Tahoma.zip",
+      "path": "data/raw/persian-source/Tahoma.zip",
+      "sha256": "2ee6a5433af42aa4ec12e74dcf560bc5e022a8b540f73aab87515dde81f34196",
+      "bytes": 9809046
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/lateef/Lateef-Regular.ttf",
+      "path": "data/raw/fonts/lateef/Lateef-Regular.ttf",
+      "sha256": "fcbd9e0227a4d7238880defa5fd74c012d69351150709e559a8577446145c2fc",
+      "bytes": 241092
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/lateef/OFL.txt",
+      "path": "data/raw/fonts/lateef/OFL.txt",
+      "sha256": "63fbda065921d34b9421154fbdeba09075efa2405a5bcb32fbbcfd0aeea892c9",
+      "bytes": 4603
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/markazitext/MarkaziText%5Bwght%5D.ttf",
+      "path": "data/raw/fonts/markazitext/MarkaziText[wght].ttf",
+      "sha256": "424b7331681160ff2a4b209bfc356ea9564d429a7daea43ee4dc28de8ff4f9fe",
+      "bytes": 296896
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/markazitext/OFL.txt",
+      "path": "data/raw/fonts/markazitext/OFL.txt",
+      "sha256": "6e7f259edf178c70b2ee36acfcc934b76d1cd56bb58d2c8f2ab8b5dded8bd430",
+      "bytes": 4485
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/vazirmatn/Vazirmatn%5Bwght%5D.ttf",
+      "path": "data/raw/fonts/vazirmatn/Vazirmatn[wght].ttf",
+      "sha256": "696249a2c74b39ffdef55de4df2809c5b639d3ff80d618d8160a095d2fd49dca",
+      "bytes": 241328
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/vazirmatn/OFL.txt",
+      "path": "data/raw/fonts/vazirmatn/OFL.txt",
+      "sha256": "17e355067c8284f47743a1ee3b1ef7ff684ff0601eda357f9353b10b3016ab31",
+      "bytes": 4391
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/gulzar/Gulzar-Regular.ttf",
+      "path": "data/raw/fonts/gulzar/Gulzar-Regular.ttf",
+      "sha256": "246337973ac64e8b70fe611405dcf32a395a8885c4497dc45dbc4975d3ac0831",
+      "bytes": 963496
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/gulzar/OFL.txt",
+      "path": "data/raw/fonts/gulzar/OFL.txt",
+      "sha256": "42d665be2bd66ea6445e0a37cb6f80eb4ac10d56cd0503efa0c6d6d6ebe86de2",
+      "bytes": 4386
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/notonaskharabic/NotoNaskhArabic%5Bwght%5D.ttf",
+      "path": "data/raw/fonts/notonaskharabic/NotoNaskhArabic[wght].ttf",
+      "sha256": "67b5a525a661b607971fbd3f96a81b89d3a768e74534fca84f18ac97e6fab72f",
+      "bytes": 307592
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/notonaskharabic/OFL.txt",
+      "path": "data/raw/fonts/notonaskharabic/OFL.txt",
+      "sha256": "a7a5a25eb188bf1cd96982030d53e23c33485c69b1044a562254226857ee13af",
+      "bytes": 4382
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/notosansarabic/NotoSansArabic%5Bwdth%2Cwght%5D.ttf",
+      "path": "data/raw/fonts/notosansarabic/NotoSansArabic[wdth,wght].ttf",
+      "sha256": "63111b5b2e074dd48cc67692e0a2726d86ee94c1c37fe8598257b7b4e87e869e",
+      "bytes": 844676
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/notosansarabic/OFL.txt",
+      "path": "data/raw/fonts/notosansarabic/OFL.txt",
+      "sha256": "07fc70bfeb985cc1a87a8587d0a0c80bab11c86c9dc3fd95b6f0cb332f983e96",
+      "bytes": 4382
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/amiri/Amiri-Regular.ttf",
+      "path": "data/raw/fonts/amiri/Amiri-Regular.ttf",
+      "sha256": "ab391c4147d054c48976e98322ad0eefe1427aa0e0502a12a4c75d80a70cfcd7",
+      "bytes": 431116
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/amiri/OFL.txt",
+      "path": "data/raw/fonts/amiri/OFL.txt",
+      "sha256": "72de68e5954f4fdd24702292ef5a32f003ca960ec9330dc86e5eefb5dffb9b22",
+      "bytes": 4389
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/scheherazadenew/ScheherazadeNew-Regular.ttf",
+      "path": "data/raw/fonts/scheherazadenew/ScheherazadeNew-Regular.ttf",
+      "sha256": "794bac8dc9e83d1d620bc471ea694f5f31d0965ce8006490a79dfc51a2d283b3",
+      "bytes": 331504
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/scheherazadenew/OFL.txt",
+      "path": "data/raw/fonts/scheherazadenew/OFL.txt",
+      "sha256": "5b9fd21ce2377fc542debebd9edfe1c48f2d3525e78a2a8abdba4a0ec3280163",
+      "bytes": 4495
+    }
+  ]
+}
