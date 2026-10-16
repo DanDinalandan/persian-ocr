@@ -50,10 +50,12 @@ The calibration objective equally weighted valid-letter exact accuracy and negat
 
 Rejected positive examples count as incorrect. Both models used the same 256 positive test identities.
 
-| Model | Correct positive predictions | Exact accuracy | Positive rejection rate |
-| --- | ---: | ---: | ---: |
-| YOLO11n | 256 / 256 | 100.00% | 0.00% |
-| Reduced CNN | 207 / 256 | 80.86% | 12.89% |
+| Model | Correct / valid | Accuracy | Macro precision | Macro recall | Macro F1 | Weighted F1 | Positive rejection rate |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| YOLO11n | 256 / 256 | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 0.00% |
+| Reduced CNN | 207 / 256 | 80.86% | 80.65% | 80.86% | 79.70% | 79.70% | 12.89% |
+
+Precision, recall, and F1 are macro averaged across the 32 letter classes; weighted F1 uses class support. A rejected valid image counts as a false negative and an incorrect prediction. Rejected inputs are not counted as predictions of a letter. Per-class metrics and confusion matrices are available in [RESULTS.md](RESULTS.md) and the [published evaluation files](results/).
 
 Negative rejection was measured separately (64 images per category):
 

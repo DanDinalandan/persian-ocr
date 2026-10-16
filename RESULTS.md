@@ -8,10 +8,10 @@ YOLO completed 70 epochs; CNN completed 86 epochs. Limits: 100 epochs, patience 
 
 The clean test split contains 256 images (eight per class), all from the held-out Scheherazade New family. The validation font was Amiri. Rejected valid inputs count as incorrect. Both models use exactly the same test identities.
 
-| Model | Correct / valid | Exact accuracy | Valid rejection rate |
-| --- | --- | --- | --- |
-| YOLO11n | 256 / 256 | 100.00% | 0.00% |
-| Reduced CNN | 207 / 256 | 80.86% | 12.89% |
+| Model | Correct / valid | Accuracy | Macro precision | Macro recall | Macro F1 | Weighted F1 | Valid rejection rate |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| YOLO11n | 256 / 256 | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 0.00% |
+| Reduced CNN | 207 / 256 | 80.86% | 80.65% | 80.86% | 79.70% | 79.70% | 12.89% |
 
 Negative inputs are scored separately. Each category has 64 test images; multiple-letter samples contain two independently isolated glyphs.
 
@@ -44,15 +44,17 @@ Latency is measured on sequential images after four warm-up images, with GPU syn
 
 | Timed operations | Images | Mean ms | Median ms | p95 ms |
 | --- | --- | --- | --- | --- |
-| YOLO forward | 896 | 5.70 | 5.69 | 5.85 |
-| YOLO decoded-image pipeline | 896 | 6.99 | 6.97 | 7.29 |
-| YOLO file decoding | 896 | 0.79 | 0.79 | 0.89 |
-| CNN preprocessing + forward | 896 | 0.90 | 0.85 | 1.16 |
+| YOLO forward | 896 | 5.70 | 5.69 | 5.81 |
+| YOLO decoded-image pipeline | 896 | 7.13 | 7.15 | 7.36 |
+| YOLO file decoding | 896 | 0.92 | 0.89 | 1.21 |
+| CNN preprocessing + forward | 896 | 0.89 | 0.85 | 1.17 |
 
-The full reports contain per-class recalls/supports and confusion matrices with a rejection column: [YOLO](test_yolo_rocm.json), [CNN](test_cnn_rocm.json). Readable matrices: [YOLO](confusion_yolo.png), [CNN](confusion_cnn.png). CSV files preserve exact counts.
+Precision, recall, and F1 are macro averaged across the 32 letter classes. Rejected valid images count as false negatives; rejected inputs are not counted as predictions of any letter. Weighted F1 uses class support.
+
+The full reports contain per-class recalls/supports and confusion matrices with a rejection column: [YOLO](results/test_yolo_rocm.json), [CNN](results/test_cnn_rocm.json). Readable matrices: [YOLO](results/confusion_yolo.png), [CNN](results/confusion_cnn.png). CSV files preserve exact counts.
 
 Limitations: all samples are rendered fonts, with only one family in each held-out split. There are no real camera captures or natural handwriting. Connected-text source crops are quarantined. The CNN uses an image-derived dark-foreground crop and cannot explicitly count letters; dark/shadowed backgrounds can interfere with its crop. Negative inputs cover simple blanks and two isolated glyphs, not the full range of non-letter objects or connected text. Undetected extra letters can still be falsely accepted. Dot-similar and off-center subsets overlap; their scores are not additive.
 
-Verification: [CPU reload and Streamlit integration](model_integration.json), [pipeline checks](checks.txt), [glyph visual review](visual_review.md), [split/provenance audit](dataset.json), [source mapping](source_mapping.md).
+The reports and confusion matrices linked above were generated from the local ROCm evaluation run. The full training dataset and local integration/audit logs are not part of this inference package.
 
-Weights: `artifacts/yolo11n.pt` and `artifacts/cnn/best.pt`. Setup and reproduction commands are in [README](../README.md). The app never trains on uploads.
+Published inference weights: `artifacts/yolo11n.pt` and `artifacts/cnn-best.pt`. Setup and inference instructions are in [README](README.md). The app never trains on uploads.
