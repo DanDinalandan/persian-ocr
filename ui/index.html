@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7779cf">
+  <meta name="description" content="Capture or upload an isolated Persian letter and identify it with the Persian OCR model.">
+  <title>Persian Letter Scanner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <main id="main-content" class="app" aria-live="polite">
+    <section class="screen screen--active" data-screen="home" aria-labelledby="home-title">
+      <header class="screen__header"><h1 id="home-title">Home</h1></header>
+      <div class="checker checker--top" aria-hidden="true"></div>
+      <div class="checker checker--bottom" aria-hidden="true"></div>
+      <div class="screen__body home-body">
+        <p class="eyebrow">Persian letter scanner</p>
+        <h2>What would you like to scan?</h2>
+        <p class="lead">Take or upload a clear photo of one isolated Persian letter.</p>
+
+        <div class="choice-grid">
+          <button class="choice-card" type="button" data-action="open-camera">
+            <span class="choice-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" role="img"><path d="M18 20h8l4-6h8l4 6h6a6 6 0 0 1 6 6v22a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6V26a6 6 0 0 1 6-6h2Z"/><circle cx="32" cy="37" r="10"/></svg>
+            </span>
+            <span>Take a photo</span>
+          </button>
+
+          <button class="choice-card" type="button" data-action="open-upload">
+            <span class="choice-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" role="img"><rect x="10" y="10" width="44" height="44" rx="5"/><circle cx="23" cy="24" r="4"/><path d="m14 47 12-12 8 8 7-7 9 11"/></svg>
+            </span>
+            <span>Upload image</span>
+          </button>
+        </div>
+
+        <p class="tip"><strong>Best results:</strong> use even lighting and keep every dot visible.</p>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="capture" aria-labelledby="capture-title" hidden>
+      <header class="screen__header"><h1 id="capture-title">Capture photo</h1></header>
+      <div class="checker checker--top" aria-hidden="true"></div>
+      <div class="checker checker--bottom" aria-hidden="true"></div>
+      <div class="screen__body input-body">
+        <div class="camera-frame">
+          <video id="camera" autoplay muted playsinline aria-label="Camera preview"></video>
+          <div class="camera-placeholder" id="camera-placeholder">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 20h8l4-6h8l4 6h6a6 6 0 0 1 6 6v22a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6V26a6 6 0 0 1 6-6h2Z"/><circle cx="32" cy="37" r="10"/></svg>
+            <span>Starting camera…</span>
+          </div>
+          <div class="guide-box" aria-hidden="true"></div>
+        </div>
+        <p class="instruction">Place one complete letter within the guide box.</p>
+        <div class="action-row">
+          <button class="button button--secondary" type="button" data-action="home">
+            <span aria-hidden="true">←</span> Return
+          </button>
+          <button class="button button--primary" id="capture-button" type="button" data-action="capture" disabled>
+            Capture <span aria-hidden="true">→</span>
+          </button>
+        </div>
+        <canvas id="capture-canvas" hidden></canvas>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="upload" aria-labelledby="upload-title" hidden>
+      <header class="screen__header"><h1 id="upload-title">Upload image</h1></header>
+      <div class="checker checker--top" aria-hidden="true"></div>
+      <div class="checker checker--bottom" aria-hidden="true"></div>
+      <div class="screen__body input-body">
+        <div class="drop-zone" id="drop-zone" tabindex="0" role="button" aria-describedby="upload-help">
+          <div class="drop-zone__preview" id="upload-thumbnail" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><rect x="10" y="10" width="44" height="44" rx="5"/><circle cx="23" cy="24" r="4"/><path d="m14 47 12-12 8 8 7-7 9 11"/></svg>
+          </div>
+          <p id="upload-help"><strong>Drag and drop here.</strong><br>PNG or JPG files only.</p>
+          <span class="or">or</span>
+          <span class="button button--small" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 6h7l2 2h9v11H3V6Z"/></svg>
+            Select files
+          </span>
+          <input id="file-input" type="file" accept="image/png,image/jpeg" hidden>
+        </div>
+        <p class="file-name" id="file-name" aria-live="polite">No image selected</p>
+        <div class="action-row">
+          <button class="button button--secondary" type="button" data-action="home">
+            <span aria-hidden="true">←</span> Return
+          </button>
+          <button class="button button--primary" id="upload-button" type="button" data-action="confirm-upload" disabled>
+            Upload <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="preview" aria-labelledby="preview-title" hidden>
+      <header class="screen__header"><h1 id="preview-title">Preview</h1></header>
+      <div class="checker checker--top" aria-hidden="true"></div>
+      <div class="checker checker--bottom" aria-hidden="true"></div>
+      <div class="screen__body preview-body">
+        <div class="preview-frame">
+          <img id="preview-image" alt="Selected Persian letter">
+        </div>
+        <p class="instruction">Make sure only one complete Persian letter is visible.</p>
+        <div class="action-row">
+          <button class="button button--secondary" type="button" data-action="retake">
+            <span aria-hidden="true">←</span> Retake
+          </button>
+          <button class="button button--primary" type="button" data-action="scan">
+            Scan
+            <svg class="button__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="result" aria-labelledby="result-title" hidden>
+      <header class="screen__header"><h1 id="result-title">Result</h1></header>
+      <div class="checker checker--top" aria-hidden="true"></div>
+      <div class="checker checker--bottom" aria-hidden="true"></div>
+      <div class="screen__body result-body">
+        <h2>The model detected:</h2>
+        <div class="result-card">
+          <span class="result-letter" id="result-letter" lang="fa" dir="rtl">ت</span>
+          <span class="result-name" id="result-name">[teh]</span>
+          <span class="result-confidence" id="result-confidence">Confidence 99.0%</span>
+        </div>
+        <div class="action-row">
+          <button class="button button--primary" type="button" data-action="copy">
+            <svg class="button__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="14" height="16" rx="2"/><path d="M9 5V3h8v2M3 17V6a2 2 0 0 1 2-2h1"/></svg>
+            Copy text
+          </button>
+          <button class="button button--primary" type="button" data-action="home">
+            <span class="try-another" aria-hidden="true">↻</span> Try another
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="processing-modal" role="dialog" aria-modal="true" aria-labelledby="processing-title" hidden>
+    <div class="modal-card modal-card--processing">
+      <div class="spinner" aria-hidden="true"></div>
+      <h2 id="processing-title">Looking at your letter…</h2>
+      <p>Please wait for a moment.</p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="error-modal" role="alertdialog" aria-modal="true" aria-labelledby="error-title" aria-describedby="error-message" hidden>
+    <div class="modal-card modal-card--error">
+      <button class="modal-close" type="button" data-action="close-error" aria-label="Close error">×</button>
+      <div class="warning-icon" aria-hidden="true">!</div>
+      <h2 id="error-title">Could not recognize letter</h2>
+      <p id="error-message">Please try again with a clearer picture.</p>
+      <div class="modal-actions">
+        <button class="button button--primary" type="button" data-action="retake">
+          <span aria-hidden="true">↻</span> Try again
+        </button>
+        <button class="button button--primary" type="button" data-action="home">
+          <span aria-hidden="true">⌂</span> Home
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>Letter copied</div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
