@@ -1,0 +1,38 @@
+[
+  {
+    "name": "lr1e3_wd1e4_drop025",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "dropout": 0.25,
+    "epochs": 80,
+    "best_epoch": 76,
+    "val_accuracy": 1.0,
+    "val_loss": 0.0003684994836703481,
+    "seconds": 92.49895235800068,
+    "checkpoint_sha256": "853864e94960b1ee2df6ea997803cada64be0c2ce1eac00c45348dee1775afa6"
+  },
+  {
+    "name": "lr5e4_wd5e4_drop030",
+    "learning_rate": 0.0005,
+    "weight_decay": 0.0005,
+    "dropout": 0.3,
+    "epochs": 80,
+    "best_epoch": 80,
+    "val_accuracy": 1.0,
+    "val_loss": 0.0018191123390352004,
+    "seconds": 81.64142813000944,
+    "checkpoint_sha256": "ba035639786f2246059d6df5a11961cc3eb2631d329b0aa06b9c309c06cf89e2"
+  },
+  {
+    "name": "lr3e4_wd1e3_drop020",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.001,
+    "dropout": 0.2,
+    "epochs": 80,
+    "best_epoch": 69,
+    "val_accuracy": 1.0,
+    "val_loss": 0.003958704495744314,
+    "seconds": 81.60646285500843,
+    "checkpoint_sha256": "20abbd1c08e0c07d88c82cf94089a1d986689c2d1081499e7ba460036da87837"
+  }
+]

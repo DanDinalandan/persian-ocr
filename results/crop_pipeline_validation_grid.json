@@ -1,0 +1,79 @@
+[
+  {
+    "threshold": 0.0,
+    "objective": 0.998046875,
+    "accuracy": 0.99609375,
+    "negative_rejection": 1.0,
+    "valid_rejection": 0.00390625
+  },
+  {
+    "threshold": 0.3,
+    "objective": 0.998046875,
+    "accuracy": 0.99609375,
+    "negative_rejection": 1.0,
+    "valid_rejection": 0.00390625
+  },
+  {
+    "threshold": 0.4,
+    "objective": 0.998046875,
+    "accuracy": 0.99609375,
+    "negative_rejection": 1.0,
+    "valid_rejection": 0.00390625
+  },
+  {
+    "threshold": 0.5,
+    "objective": 0.998046875,
+    "accuracy": 0.99609375,
+    "negative_rejection": 1.0,
+    "valid_rejection": 0.00390625
+  },
+  {
+    "threshold": 0.6,
+    "objective": 0.998046875,
+    "accuracy": 0.99609375,
+    "negative_rejection": 1.0,
+    "valid_rejection": 0.00390625
+  },
+  {
+    "threshold": 0.7,
+    "objective": 0.998046875,
+    "accuracy": 0.99609375,
+    "negative_rejection": 1.0,
+    "valid_rejection": 0.00390625
+  },
+  {
+    "threshold": 0.8,
+    "objective": 0.998046875,
+    "accuracy": 0.99609375,
+    "negative_rejection": 1.0,
+    "valid_rejection": 0.00390625
+  },
+  {
+    "threshold": 0.85,
+    "objective": 0.998046875,
+    "accuracy": 0.99609375,
+    "negative_rejection": 1.0,
+    "valid_rejection": 0.00390625
+  },
+  {
+    "threshold": 0.9,
+    "objective": 0.998046875,
+    "accuracy": 0.99609375,
+    "negative_rejection": 1.0,
+    "valid_rejection": 0.00390625
+  },
+  {
+    "threshold": 0.95,
+    "objective": 0.998046875,
+    "accuracy": 0.99609375,
+    "negative_rejection": 1.0,
+    "valid_rejection": 0.00390625
+  },
+  {
+    "threshold": 0.99,
+    "objective": 0.998046875,
+    "accuracy": 0.99609375,
+    "negative_rejection": 1.0,
+    "valid_rejection": 0.00390625
+  }
+]

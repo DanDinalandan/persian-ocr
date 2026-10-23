@@ -1,0 +1,66 @@
+{
+  "model": "four double-convolution BatchNorm-SiLU-MaxPool stages (32,64,128,192), global average pooling, dropout and 32 logits",
+  "input_size": 96,
+  "device": "rocm",
+  "batch": 32,
+  "workers": 4,
+  "seed": 42,
+  "max_epochs": 80,
+  "patience": 12,
+  "augmentation": "train only: scale 0.90-1.08, translation +/-3px, rotation +/-6deg, mild contrast/brightness and occasional light blur",
+  "preprocessing": "96x96 white canvas, GT box plus 6% margin, median-border background flattening, grayscale normalized to [-1,1] with ink positive",
+  "selection": "highest validation crop accuracy, then lowest validation loss",
+  "best_trial": {
+    "name": "lr1e3_wd1e4_drop025",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "dropout": 0.25,
+    "epochs": 80,
+    "best_epoch": 76,
+    "val_accuracy": 1.0,
+    "val_loss": 0.0003684994836703481,
+    "seconds": 92.49895235800068,
+    "checkpoint_sha256": "853864e94960b1ee2df6ea997803cada64be0c2ce1eac00c45348dee1775afa6"
+  },
+  "trials": [
+    {
+      "name": "lr1e3_wd1e4_drop025",
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "dropout": 0.25,
+      "epochs": 80,
+      "best_epoch": 76,
+      "val_accuracy": 1.0,
+      "val_loss": 0.0003684994836703481,
+      "seconds": 92.49895235800068,
+      "checkpoint_sha256": "853864e94960b1ee2df6ea997803cada64be0c2ce1eac00c45348dee1775afa6"
+    },
+    {
+      "name": "lr5e4_wd5e4_drop030",
+      "learning_rate": 0.0005,
+      "weight_decay": 0.0005,
+      "dropout": 0.3,
+      "epochs": 80,
+      "best_epoch": 80,
+      "val_accuracy": 1.0,
+      "val_loss": 0.0018191123390352004,
+      "seconds": 81.64142813000944,
+      "checkpoint_sha256": "ba035639786f2246059d6df5a11961cc3eb2631d329b0aa06b9c309c06cf89e2"
+    },
+    {
+      "name": "lr3e4_wd1e3_drop020",
+      "learning_rate": 0.0003,
+      "weight_decay": 0.001,
+      "dropout": 0.2,
+      "epochs": 80,
+      "best_epoch": 69,
+      "val_accuracy": 1.0,
+      "val_loss": 0.003958704495744314,
+      "seconds": 81.60646285500843,
+      "checkpoint_sha256": "20abbd1c08e0c07d88c82cf94089a1d986689c2d1081499e7ba460036da87837"
+    }
+  ],
+  "checkpoint_sha256": "853864e94960b1ee2df6ea997803cada64be0c2ce1eac00c45348dee1775afa6",
+  "train_manifest_sha256": "addfa22b93cb79e6c4bfc4ffb98dcbdd0827c8bf57c45b729059ea80b812ac43",
+  "validation_manifest_sha256": "69290bd0282605bfe458249c3777d9fff9b17533b5b75aee429fa1fb5fd43e6f"
+}

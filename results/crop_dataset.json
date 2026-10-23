@@ -1,0 +1,29 @@
+{
+  "version": "bbox-crop-v1",
+  "seed": 42,
+  "output_size": 96,
+  "crop_policy": "Ground-truth box with 6% relative margin; near-background pixels flattened using median border intensity; centered on white square.",
+  "source_manifest_checksums": {
+    "val.jsonl": "82155a66733c31e048c8dc6285050f32775c768840277811ae54668398080bf1",
+    "val_negative.jsonl": "4debe663858a046d7026ad43623246c052f59764c4edc4bd7b0fb8135345f9dd",
+    "test_negative.jsonl": "871d611f82d93f8dea3ff2e2d4c9a966e07e686f1b3310c6033e32e2e1568e9c",
+    "train.jsonl": "e0d2cdb76ca68be35463465ecba090d58be1d64994d2dc4e0b571855d55d9138",
+    "test.jsonl": "81cbe5c98fae462a1932ec0f3f57e2e69bbff332d81cf1fbac37bce2c5e652a8"
+  },
+  "crop_manifest_checksums": {
+    "train.jsonl": "addfa22b93cb79e6c4bfc4ffb98dcbdd0827c8bf57c45b729059ea80b812ac43",
+    "val.jsonl": "69290bd0282605bfe458249c3777d9fff9b17533b5b75aee429fa1fb5fd43e6f",
+    "test.jsonl": "1a9999db2d25793db0fcaedacd6e3f4506b3ce792414cc7c1bcabc24d15347d5",
+    "test_stress.jsonl": "ed093e2bb7aa4080610da76989745c9f410e7aecbb8c3d3ec92306e26ea888a8"
+  },
+  "counts": {
+    "train": 1536,
+    "val": 256,
+    "test": 256,
+    "test_stress": 512
+  },
+  "limitations": [
+    "Training/validation/test crop generation uses ground-truth boxes. Production crops must use detector boxes.",
+    "Synthetic font dataset only; no camera photos or natural handwriting."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "classifier_threshold": 0.99,
+  "validation_result": {
+    "threshold": 0.99,
+    "objective": 0.998046875,
+    "accuracy": 0.99609375,
+    "negative_rejection": 1.0,
+    "valid_rejection": 0.00390625
+  },
+  "validation_objective": "0.5 end-to-end valid exact accuracy + 0.5 negative rejection accuracy",
+  "detector_policy": {
+    "candidate_floor": 0.03,
+    "acceptance_threshold": 0.8,
+    "nms_iou": 0.4,
+    "validation_objective": "0.5 valid exact accuracy + 0.5 negative rejection accuracy",
+    "validation_result": {
+      "candidate_floor": 0.03,
+      "acceptance_threshold": 0.8,
+      "nms_iou": 0.4,
+      "objective": 0.998046875,
+      "accuracy": 0.99609375,
+      "negative_rejection": 1.0
+    },
+    "checkpoint_sha256": "1b82317638d84627ee1ca455bad970ce70041d12194b0fb9c7762c1ba51540ab",
+    "validation_manifest_sha256": "82155a66733c31e048c8dc6285050f32775c768840277811ae54668398080bf1",
+    "negative_manifest_sha256": "4debe663858a046d7026ad43623246c052f59764c4edc4bd7b0fb8135345f9dd"
+  },
+  "detector_sha256": "1b82317638d84627ee1ca455bad970ce70041d12194b0fb9c7762c1ba51540ab",
+  "classifier_sha256": "853864e94960b1ee2df6ea997803cada64be0c2ce1eac00c45348dee1775afa6",
+  "validation_manifest_sha256": "82155a66733c31e048c8dc6285050f32775c768840277811ae54668398080bf1",
+  "validation_negative_manifest_sha256": "4debe663858a046d7026ad43623246c052f59764c4edc4bd7b0fb8135345f9dd"
+}

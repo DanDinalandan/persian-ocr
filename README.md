@@ -1,6 +1,6 @@
 # Persian isolated-letter recognition
 
-A 32-class Persian character recognition project. The deployed model is a fine-tuned YOLO11n detector; a smaller PyTorch CNN was trained as a comparison. The [Colab notebook](https://colab.research.google.com/github/yt22-orb/persian-ocr/blob/main/Persian_Isolated_Letter_Recognizer.ipynb) runs the YOLO detector on images and exports predictions to CSV. The trained YOLO checkpoint and comparison CNN are attached to the [latest release](https://github.com/yt22-orb/persian-ocr/releases/latest).
+A 32-class Persian character recognition project. The Colab workflow uses fine-tuned YOLO11n for letter localization, then a crop-cleaning step and a trained PyTorch crop CNN for recognition. The [Colab notebook](https://colab.research.google.com/github/yt22-orb/persian-ocr/blob/main/Persian_Isolated_Letter_Recognizer.ipynb) runs this two-stage pipeline on images and exports predictions to CSV. The earlier full-image CNN remains available as a comparison. The trained YOLO checkpoint and comparison CNN are attached to the [latest release](https://github.com/yt22-orb/persian-ocr/releases/latest).
 
 ## What was built
 
@@ -81,10 +81,20 @@ The test font, validation font, and all scores are small synthetic samples. No c
 
 Detailed measurements, confusion matrices, per-class metrics, subgroup results, latency, and local verification reports are summarized in [RESULTS.md](RESULTS.md). Data and model source credits and license context are in [ATTRIBUTION.md](ATTRIBUTION.md).
 
+## Bounding-box crop classifier
+
+The crop classifier was trained to consume a tightly cropped letter, rather than a full image. YOLO11n supplies the predicted box. Preprocessing expands it by 6%, estimates and flattens near-background texture from the border, retains detached dots, and centers the grayscale result on a 96×96 white canvas. The model checkpoint, preprocessing/inference code, calibrated policy, split-preserving derived crop dataset, and machine-readable evaluation files are included in this repository.
+
+Training used 1,536 train crops and 256 validation crops from font-family-separated synthetic splits. On an AMD Radeon RX 7800 XT with ROCm 7.2, three AdamW configurations were trained for up to 80 epochs; all reached 100% validation crop accuracy. The selected run (`lr=0.001`, `weight_decay=0.0001`, `dropout=0.25`) achieved 100% at epoch 76 with validation loss 0.0003685. See [`artifacts/crop_cnn/config.json`](artifacts/crop_cnn/config.json) for run metadata and [`CROP_PIPELINE_RESULTS.md`](CROP_PIPELINE_RESULTS.md) for metrics and limitations.
+
+On the held-out Scheherazade New test font, crop CNN top-1 accuracy on YOLO boxes was 256/256 (100%). The frozen confidence-gated two-stage pipeline accepted 248/256 (96.88%), rejecting eight correctly labeled `vav` crops under the conservative 0.99 confidence threshold. Blank and two-letter negatives were rejected 128/128 with no false accepts. Standalone YOLO scored 256/256 (100%) on the same benchmark, so the crop cascade improves on the earlier full-image CNN (224/256 raw top-1) but does not outperform YOLO alone. These are small synthetic-font results, not handwriting or camera performance.
+
+The Colab notebook now loads `artifacts/crop_cnn/best.pt` from this repository automatically. Keep `yolo11n.pt` from the latest release in Google Drive; that detector checkpoint is the one used to calibrate the crop policy.
+
 ## Run inference in Colab
 
 1. Open the [Colab notebook](https://colab.research.google.com/github/yt22-orb/persian-ocr/blob/main/Persian_Isolated_Letter_Recognizer.ipynb).
-2. Download `yolo11n.pt` and `labels.json` from the [latest release](https://github.com/yt22-orb/persian-ocr/releases/latest) into the same Google Drive folder.
+2. Download `yolo11n.pt` from the [latest release](https://github.com/yt22-orb/persian-ocr/releases/latest) into Google Drive. The notebook loads labels, crop weights, preprocessing code, and calibrated thresholds from this repository.
 3. Upload images or a ZIP into this repository’s [`dataset/` folder](https://github.com/yt22-orb/persian-ocr/tree/main/dataset). The notebook clones the public repository and scans that folder recursively. Or choose `colab_upload` in the notebook to upload a ZIP directly.
 4. Run the notebook to download a CSV containing each image’s prediction, confidence, and review status. Class-named subfolders are included as reference labels in the CSV; the notebook does not calculate accuracy automatically.
 
@@ -94,4 +104,4 @@ The `dataset/` directory is an input location for user-provided inference images
 
 This repository is the inference package: it contains the notebook, labels, calibrated policies, model metadata, results summary, and the prepared benchmark under `data/prepared/`. The full training pipeline and raw source archives remain in the development workspace and are not included here. Reported settings and metrics document the completed run; exact retraining requires the training code and pinned environment recorded in that workspace.
 
-The release ZIP includes the notebook, inference code, both checkpoints, labels, policies, results, and attribution files. See [release v1.0.2](https://github.com/yt22-orb/persian-ocr/releases/tag/v1.0.2).
+The release ZIP includes the notebook, inference code, detector and full-image CNN checkpoints, labels, policies, results, and attribution files. The crop CNN checkpoint and derived crops are versioned in the GitHub repository. See [release v1.0.2](https://github.com/yt22-orb/persian-ocr/releases/tag/v1.0.2).
